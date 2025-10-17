@@ -1,5 +1,5 @@
 name: Invoice Ninja
-version: 1.0.0
+version: 1.0.5
 slug: invoiceninja
 description: Invoice Ninja for Home Assistant
 url: https://github.com/Nephilim293/invoiceninja-ha
@@ -22,6 +22,7 @@ hassio_api: true
 options:
   app_key: ''
   db_host: 'core-mariadb'
+  db_port: '3306'
   db_database: 'ninja'
   db_username: 'ninja'
   db_password: 'changeme'
@@ -29,6 +30,7 @@ options:
 schema:
   app_key: str
   db_host: str
+  db_port: str
   db_database: str
   db_username: str
   db_password: str
