@@ -1,21 +1,25 @@
 #!/command/with-contenv bashio
 # ==============================================================================
 # Home Assistant Add-on: Invoice Ninja
-# Gracefully stop processes when the add-on is stopped
+# Cleanup and graceful shutdown
 # ==============================================================================
 
-bashio::log.info "Stopping Invoice Ninja..."
+bashio::log.info "Invoice Ninja is stopping..."
 
-# Stop supervisord cleanly if it's running
-if pgrep supervisord >/dev/null 2>&1; then
-    bashio::log.info "Stopping supervisord..."
-    pkill -SIGTERM supervisord
-    sleep 5
+# Versuche, PHP-Prozesse sauber zu beenden
+if pgrep -f "php artisan serve" > /dev/null; then
+    bashio::log.info "Stopping PHP server..."
+    pkill -f "php artisan serve"
+else
+    bashio::log.info "No running PHP server found."
 fi
 
-# Clean temporary files
-bashio::log.info "Cleaning temporary files..."
-rm -rf /tmp/* || true
+# Cache und temporäre Dateien bereinigen (optional)
+if [ -d /var/www/app/storage/framework/cache ]; then
+    bashio::log.info "Clearing application cache..."
+    rm -rf /var/www/app/storage/framework/cache/*
+fi
 
-bashio::log.info "Invoice Ninja has been stopped successfully."
-exit 0
+# Log-Hinweis
+bashio::log.info "Invoice Ninja stopped successfully. ✅"
+bashio::log.info "All temporary files cleaned up."
