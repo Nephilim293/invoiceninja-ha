@@ -1,0 +1,9 @@
+{
+  "name": "Nephilim invoiceninja-ha Addon ",
+  "url": "https://github.com/Nephilim293/invoiceninja-ha",
+  "maintainer": "Ioan Küchler <info@andromeda-network.de>",
+  "homeassistant": "2025.10.0",
+  "arch": ["aarch64", "amd64", "armv7"],
+  "version": "1.0.0",
+  "description": "Custom Home Assistant Add-ons for  Invoice Ninja maintained by Ioan Küchler."
+}
