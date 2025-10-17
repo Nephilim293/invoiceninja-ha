@@ -4,22 +4,19 @@
 # Cleanup and graceful shutdown
 # ==============================================================================
 
-bashio::log.info "Invoice Ninja is stopping..."
+bashio::log.info "Invoice Ninja is stopping (finish script)..."
 
-# Versuche, PHP-Prozesse sauber zu beenden
-if pgrep -f "php artisan serve" > /dev/null; then
-    bashio::log.info "Stopping PHP server..."
-    pkill -f "php artisan serve"
-else
-    bashio::log.info "No running PHP server found."
-fi
+# Der php artisan serve-Prozess sollte bereits durch s6 beendet worden sein.
+# Das explizite pkill wird hier entfernt, da es unnötig ist.
 
-# Cache und temporäre Dateien bereinigen (optional)
-if [ -d /var/www/app/storage/framework/cache ]; then
+# Cache und temporäre Dateien bereinigen
+cd /var/www/app || bashio::exit.ok # Wechsel ins Arbeitsverzeichnis
+if [ -d storage/framework/cache ]; then
     bashio::log.info "Clearing application cache..."
-    rm -rf /var/www/app/storage/framework/cache/*
+    # Verwende rm -r * anstelle von rm -rf, um das Verzeichnis selbst nicht zu löschen
+    rm -r storage/framework/cache/*
+    # Alternativ (wenn php verfügbar): php artisan cache:clear
 fi
 
 # Log-Hinweis
 bashio::log.info "Invoice Ninja stopped successfully. ✅"
-bashio::log.info "All temporary files cleaned up."
