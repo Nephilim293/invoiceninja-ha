@@ -1,0 +1,7 @@
+{
+  "version": "1.0.5",
+  "homeassistant": "2025.10.0",
+  "slug": "invoiceninja",
+  "url": "https://github.com/Nephilim293/invoiceninja-ha",
+  "description": "Invoice Ninja for Home Assistant"
+}
