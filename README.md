@@ -1,6 +1,6 @@
 # 🧮 Invoice Ninja Add-on for Home Assistant
 
-![Invoice Ninja Logo](https://www.invoiceninja.com/wp-content/uploads/2020/09/invoice-ninja-logo-300x73.png)
+<img src="logo.png" />
 
 Dieses Add-on ermöglicht es dir, **[Invoice Ninja](https://www.invoiceninja.com/)** – eine Open-Source Rechnungs- und Buchhaltungsplattform – direkt innerhalb von **Home Assistant** zu betreiben.  
 Es läuft vollständig integriert über **Ingress**, ohne dass du Ports nach außen öffnen musst.
