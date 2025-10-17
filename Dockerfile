@@ -1,7 +1,8 @@
 FROM invoiceninja/invoiceninja:latest
 
-# Kopiere optionale Anpassungen (z. B. nginx.conf oder env-Dateien)
-# COPY rootfs /
+# Stellen Sie sicher, dass das rootfs kopiert wird,
+# auch wenn Sie es hier auskommentiert haben!
+COPY rootfs /
 
-# Home Assistant braucht den App-Start im Vordergrund
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+# Keine CMD erforderlich, da s6-overlay die Dienste startet
+# und das run-Skript den Prozess in den Vordergrund bringt.
